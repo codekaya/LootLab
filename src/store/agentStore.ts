@@ -10,7 +10,7 @@ const generateRandomPersonality = () => ({
 
 const generateInitialAgents = (count: number): Map<string, AgentCharacteristics> => {
   const agents = new Map();
-  const names = ['Cinax', 'Vovo', 'P1A', 'Ege','Kaya','Geeny'];
+  const names = ['Vovo', 'P1A','Cinax', 'Ege','Kaya','Geeny'];
   
   for (let i = 0; i < count; i++) {
     const name = names[i];
