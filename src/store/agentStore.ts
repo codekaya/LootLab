@@ -222,7 +222,7 @@ export const useAgentStore = create<AgentState>((set, get) => ({
     aliveAgents.forEach(([voterName, voter]) => {
       const votes = new Map<string, number>();
       
-      aliveAgents.forEach(([targetName, target]) => {
+      aliveAgents.forEach(([targetName]) => {
         if (voterName === targetName) return;
         
         const relationship = voter.relationships.get(targetName) || 0;

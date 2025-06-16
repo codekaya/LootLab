@@ -139,7 +139,7 @@ export const Room = () => {
       // First agent speaks
       const interaction1 = {
         type: type1 as 'positive' | 'negative' | 'neutral',
-        message: `${agent1.name}: "${getInteractionMessage(agent1, agent2, type1)}"`,
+        message: `${agent1.name}: "${getInteractionMessage(agent1, type1)}"`,
         effect: {
           target: agent2.name,
           relationshipChange: type1 === 'positive' ? 10 : type1 === 'negative' ? -10 : 0,
@@ -156,7 +156,7 @@ export const Room = () => {
       setTimeout(() => {
         const interaction2 = {
           type: type2 as 'positive' | 'negative' | 'neutral',
-          message: `${agent2.name}: "${getInteractionMessage(agent2, agent1, type2)}"`,
+          message: `${agent2.name}: "${getInteractionMessage(agent2, type2)}"`,
           effect: {
             target: agent1.name,
             relationshipChange: type2 === 'positive' ? 10 : type2 === 'negative' ? -10 : 0,
@@ -238,7 +238,7 @@ export const Room = () => {
     return () => clearInterval(interval);
   }, [agents, updateAgentPosition, addInteraction, updateRelationship, startVoting]);
 
-  const getInteractionMessage = (agent1: AgentCharacteristics, agent2: AgentCharacteristics, type: 'positive' | 'negative' | 'neutral'): string => {
+  const getInteractionMessage = (agent: AgentCharacteristics, type: 'positive' | 'negative' | 'neutral'): string => {
     const messages = {
       positive: [
         "I'm glad we're friends!",
@@ -258,13 +258,13 @@ export const Room = () => {
     };
 
     // Add personality-based variations
-    if (agent1.personality.aggression > 70) {
+    if (agent.personality.aggression > 70) {
       messages.negative.push("Don't mess with me!");
     }
-    if (agent1.personality.friendliness > 70) {
+    if (agent.personality.friendliness > 70) {
       messages.positive.push("You're my favorite person here!");
     }
-    if (agent1.personality.intelligence > 70) {
+    if (agent.personality.intelligence > 70) {
       messages.neutral.push("Have you considered the implications of our situation?");
     }
 
