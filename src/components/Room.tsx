@@ -12,6 +12,17 @@ const RoomContainer = styled.div`
   overflow: hidden;
 `;
 
+const Title = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+`;
+
 const Agent = styled(motion.div)<{ $color: string }>`
   width: 100px;
   height: 100px;
@@ -254,6 +265,27 @@ export const Room = () => {
         "Hello there.",
         "Nice weather we're having.",
         "How are you doing?",
+        "Interesting day, isn't it?",
+        "I've been thinking about our last conversation.",
+        "Did you see what happened earlier?",
+        "I have a feeling something's about to change.",
+        "Your perspective is quite unique.",
+        "I've been watching your movements.",
+        "We should stick together in times like these.",
+        "I don't trust the others as much as I trust you.",
+        "Have you noticed any suspicious behavior?",
+        "I think we can work together on this.",
+        "Your strategy is impressive.",
+        "I've been analyzing the situation carefully.",
+        "We might be the last ones standing.",
+        "I have a proposition for you.",
+        "Let's form an alliance, shall we?",
+        "I've been keeping track of everyone's actions.",
+        "Your survival skills are remarkable.",
+        "I think we're being watched.",
+        "We need to be more careful.",
+        "I've noticed some patterns in their behavior.",
+        "Let's discuss our next move.",
       ],
     };
 
@@ -273,6 +305,7 @@ export const Room = () => {
 
   return (
     <RoomContainer ref={roomRef}>
+      <Title>Loot Exp 001</Title>
       <AnimatePresence>
         {Array.from(agents.entries()).map(([name, agent]) => (
           agent.isAlive && (
@@ -300,7 +333,7 @@ export const Room = () => {
 
           return (
             <InteractionBubble
-              key={index}
+              key={`${interaction.agentName}-${interaction.timestamp}-${index}`}
               $type={interaction.type}
               initial={{ opacity: 0, y: 20, scale: 0.8 }}
               animate={{
